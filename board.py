@@ -34,16 +34,18 @@ class Board:
         return temp_board_r
 
     def make_move(self, player, position):
-        if player not in [1,2]:
+        self.check_valid_move(player, position)
+        self.board[position] = player
+
+    def check_valid_move(self, player, position):
+        if player not in [1, 2]:
             raise Exception("Invalid player")
         if position not in range(9):
             raise Exception("Invalid move")
         if self.board[position] != 0:
             raise Exception("Position not empty")
 
-        self.board[position] = player
-
-    def is_game_over(self):
+    def winner(self):
         if self.board[0] != 0 and self.board[0] == self.board[1] == self.board[2]:
             return self.board[0]
         if self.board[3] != 0 and self.board[3] == self.board[4] == self.board[5]:
@@ -60,7 +62,11 @@ class Board:
             return self.board[0]
         if self.board[2] != 0 and self.board[2] == self.board[4] == self.board[6]:
             return self.board[2]
-        return 0
+
+        for i in xrange(9):
+            if self.board[i] == 0:
+                return 0
+        return 3
 
     def check_board(self, other):
         for f in [0,1]:
