@@ -64,7 +64,7 @@ class Game:
         self.board.make_move(player, position)
 
     def is_game_over(self):
-        return self.board.is_game_over()
+        return self.board.winner() != 0
 
     def make_menace_move(self, position):
         if self.current_player != 1:
@@ -73,12 +73,11 @@ class Game:
 
         i, color = self.get_matchbox()
 
-        log.write(self.gid, {"mb": i, 1: position})
+        if i is not None:
+            log.write(self.gid, {"mb": i, 1: position})
 
         self.make_move(1, position)
         self.current_player = 2
-
-
 
     def make_player_move(self, position):
         if self.current_player != 2:
@@ -89,6 +88,17 @@ class Game:
 
         self.make_move(2, position)
         self.current_player = 1
+
+        self.last_move()
+
+    def last_move(self):
+        if self.is_game_over():
+            return
+        move = self.board.last_move()
+        if move == -1:
+            return
+        self.make_menace_move(move)
+
 
 if __name__ == '__main__':
     g = Game()

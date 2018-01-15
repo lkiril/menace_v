@@ -16,8 +16,6 @@ def run():
     if position:
         position = int(position)
 
-    # try:
-    payload = ""
     if action == 'newGame':
         game = Game()
     elif action == 'makePlayerMove':
@@ -25,12 +23,10 @@ def run():
     elif action == 'makeMenaceMove':
         game.make_menace_move(position)
 
-    payload = json.dumps(game.get_status())
-    return render_template('menace.html', payload=payload, name="moshe")
-    #return Response(payload, status=200, mimetype='application/json')
+    payload = game.get_status()
+    print payload
+    return render_template('menace.html', payload=payload)
 
-    # except Exception as e:
-    #     return  Response(json.dumps({'err':e.message}), status=400, mimetype='application/json')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)

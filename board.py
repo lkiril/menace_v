@@ -37,6 +37,11 @@ class Board:
         self.check_valid_move(player, position)
         self.board[position] = player
 
+    def last_move(self):
+        if self.board.count(0) != 1:
+            return -1
+        return self.board.index(0)
+
     def check_valid_move(self, player, position):
         if player not in [1, 2]:
             raise Exception("Invalid player")
@@ -69,11 +74,11 @@ class Board:
         return 3
 
     def check_board(self, other):
-        for f in [0,1]:
+        for f in [0, 1]:
             for r in [0, 1, 2, 3]:
                 if other.rf(f, r) == self.board:
                     return (f, r), True
-        return (-1,-1), False
+        return (-1, -1), False
 
     def get_status(self):
         return self.board
