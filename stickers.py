@@ -3,11 +3,11 @@ from collections import namedtuple
 from PIL import Image, ImageDraw, ImageFont
 
 
-CELL_SIZE = 30
-TEXT_OFFSET = CELL_SIZE
-BEAD_SIZE = 20
-MARK_SIZE = 16
-MARGIN_SIZE = 4
+CELL_SIZE = 256
+TEXT_OFFSET = 0
+BEAD_SIZE = 240
+MARK_SIZE = 200
+MARGIN_SIZE = 0
 
 BOARD_SIZE = (
     CELL_SIZE*3 + MARGIN_SIZE*2,
@@ -40,8 +40,9 @@ colors = {
 
 
 def bead(draw, cell):
-    x = cell % 3
-    y = cell / 3
+    # x = cell % 3
+    # y = cell / 3
+    x, y = 0, 0
     bead_position = (
                             CELL_SIZE * x + (CELL_SIZE - BEAD_SIZE) / 2 + MARGIN_SIZE,
                             CELL_SIZE * y + (CELL_SIZE - BEAD_SIZE) / 2 + TEXT_OFFSET + MARGIN_SIZE,
@@ -54,8 +55,9 @@ def bead(draw, cell):
 
 
 def mark_x(draw, cell):
-    x = cell % 3
-    y = cell / 3
+    # x = cell % 3
+    # y = cell / 3
+    x, y = 0, 0
     line1 = (
                             CELL_SIZE * x + (CELL_SIZE - MARK_SIZE) / 2 + MARGIN_SIZE,
                             CELL_SIZE * y + (CELL_SIZE - MARK_SIZE) / 2 + TEXT_OFFSET + MARGIN_SIZE,
@@ -73,8 +75,9 @@ def mark_x(draw, cell):
 
 
 def mark_o(draw, cell):
-    x = cell % 3
-    y = cell / 3
+    # x = cell % 3
+    # y = cell / 3
+    x, y = 0, 0
     for i in xrange(-1, 3):
         position = (
             CELL_SIZE * x + (CELL_SIZE - MARK_SIZE) / 2 + i + MARGIN_SIZE,
@@ -134,5 +137,24 @@ def create_pages(cols, rows, paths):
 
 
 if __name__ == '__main__':
-    paths = create_stickers()
-    create_pages(6, 6, paths)
+    # paths = create_stickers()
+    # create_pages(6, 6, paths)
+
+    for i in xrange(9):
+        cell = Image.new("RGB", (CELL_SIZE, CELL_SIZE), (255, 255, 255))
+        draw = ImageDraw.Draw(cell)
+        bead(draw, i)
+        cell.save("templates/color{0}.jpg".format(i))
+
+    cell = Image.new("RGB", (CELL_SIZE, CELL_SIZE), (255, 255, 255))
+    draw = ImageDraw.Draw(cell)
+    mark_x(draw, 0)
+    cell.save("templates/state1.jpg")
+
+    cell = Image.new("RGB", (CELL_SIZE, CELL_SIZE), (255, 255, 255))
+    draw = ImageDraw.Draw(cell)
+    mark_o(draw, 0)
+    cell.save("templates/state2.jpg")
+
+    cell = Image.new("RGB", (CELL_SIZE, CELL_SIZE), (255, 255, 255))
+    cell.save("templates/white.jpg")
