@@ -17,3 +17,13 @@ def get(gid):
     for l in  r.lrange(gid, 0, -1):
         res.append(json.loads(l))
     return res
+
+
+def write_stats(result):
+    r = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=0)
+    r.rpush('results', json.dumps(data))
+
+
+def get_stats():
+    r = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=0)
+    return r.lrange('results', 0, -1)

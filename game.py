@@ -49,6 +49,7 @@ class Game:
         res['gameover'] = winner
         res['current_player'] = self.current_player
         res['log'] = log.get(self.gid)
+        res['games_stats'] = log.get_stats()
 
         return res
 
@@ -61,12 +62,15 @@ class Game:
         if winner == 1:
             msg = "Add 3 {0} beads to matchbox #{1} "
             num = 3
+            log.write_stats(2)
         if winner == 2:
             msg = "Remove 1 {0} bead from matchbox #{1}"
             num = -1
+            log.write_stats(-1)
         if winner == 3:
             msg = "Add 1 {0} bead to matchbox #{1}"
             num = 1
+            log.write_stats(1)
         for turn_log in game_logs:
             if '1' in turn_log and 'mb' in turn_log:
                 instructions.append({
