@@ -2,6 +2,7 @@ from params import *
 from board import Board
 import log
 import time
+import random
 
 
 class Game:
@@ -39,6 +40,8 @@ class Game:
         winner = self.board.winner()
         if winner > 0:
             res['instructions'] = self.get_end_game_instructions(winner)
+            if winner == 1:
+                res['quote'] = random.choice(QUOTES)
         res['gameover'] = winner
         res['current_player'] = self.current_player
         res['log'] = log.get(self.gid)

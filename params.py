@@ -81,3 +81,19 @@ BOARD_INPUTS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0
                     0, 1, 1, 0, 2, 1, 2, 1, 0, 0, 2, 1, 0, 2, 1, 2, 2, 1, 0, 0, 0, 1, 2, 1, 2, 2, 0, 1, 0, 0, 1, 2, 1,
                     2, 2, 0, 0, 1, 0, 1, 2, 1, 2, 2, 0, 0, 0, 1, 1, 2, 1, 2, 1, 2, 0, 0, 0, 1, 2, 1, 2, 0, 2, 0, 1, 0,
                     1, 2, 1, 2, 1, 0, 0, 2, 0, 1, 2, 1, 2, 1, 0, 0, 0, 2, 1, 2, 1, 2, 0, 1, 0, 0, 2, 1, 2, 1]
+
+QUOTES = [
+        "This is the worst kind of discrimination there is: the kind against me!",
+        "Hahahahaha. Oh wait you’re serious. Let me laugh even harder.",
+        "I’ll build by own theme park. With black jack, and hookers. In fact, forget the park!",
+        "The game’s over. I have all the money. Compare your lives to mine and then kill yourselves!",
+        "That’s closest thing to ‘Menace is great’ that anyone other me has ever said.",
+        "I’m Menace, baby! Oh god, please insert liquor!",
+        "You know what cheers me up? Other people’s misfortune.",
+        "Anything less than immortality is a complete waste of time.",
+        "Oh, your God!",
+        "Shut up baby, I know it!"
+        ]
+
+
+
