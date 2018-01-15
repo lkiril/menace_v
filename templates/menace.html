@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<div align="left">
+<div style="float:left">
     <table>
         {% for row in [0, 1, 2] %}
             <tr align="center">
@@ -33,4 +33,30 @@
             </tr>
         {% endfor %}
     </table>
+</div>
+<div style="float:left; margin-left: 200px">
+    {% if payload["gameover"] == 0 %}
+        {% if payload["current_player"] == 1 %}
+            Menace plays <br>
+            Please open matchbox #{{ payload["matchbox"] }} and play a random bead <br>
+            Don't forget to return the bead to the matchbox <br>
+        {% else %}
+            Your turn <br>
+            Make your move, puny human <br>
+        {% endif %}
+    {% elif payload["gameover"] == 1 %}
+        Menace wins!!! <br>
+    {% elif payload["gameover"] == 2 %}
+        Human wins!!! <br>
+    {% elif payload["gameover"] == 3 %}
+        A draw <br>
+    {%  endif %}
+    {% if payload["gameover"] != 0 %}
+        {{ payload["quote"] }} <br><br>
+        Please help Menace learn by following these instructions: <br>
+        {% for instruction in payload["instructions"] %}
+            {{ loop.index }}. {{ instruction["msg"] }} <br>
+        {% endfor %}
+    {% endif %}
+    <button type="button" onclick="location.href='/?action=newGame'">New Game</button>
 </div>

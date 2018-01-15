@@ -1,7 +1,8 @@
 import redis
 import json
 
-REDIS_HOST = "menace.0av4ve.0001.use1.cache.amazonaws.com"
+# REDIS_HOST = "menace.0av4ve.0001.use1.cache.amazonaws.com"
+REDIS_HOST = "localhost"
 REDIS_PORT = 6379
 
 

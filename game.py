@@ -41,7 +41,11 @@ class Game:
         if winner > 0:
             res['instructions'] = self.get_end_game_instructions(winner)
             if winner == 1:
-                res['quote'] = random.choice(QUOTES)
+                res['quote'] = random.choice(WIN_QUOTES)
+            elif winner == 2:
+                res['quote'] = random.choice(LOSE_QUOTES)
+            elif winner == 3:
+                res['quote'] = random.choice(DRAW_QUOTES)
         res['gameover'] = winner
         res['current_player'] = self.current_player
         res['log'] = log.get(self.gid)
@@ -52,15 +56,24 @@ class Game:
         game_logs = log.get(self.gid)
         instructions = []
         msg = ""
+        color = ""
+        num = ""
         if winner == 1:
-            msg = "return the played color {0} to matchbox {1} and put 3 more similar beads"
+            msg = "Add 3 {0} beads to matchbox #{1} "
+            num = 3
         if winner == 2:
-            msg = "take the played color {0} from matchbox {1}"
+            msg = "Remove 1 {0} bead from matchbox #{1}"
+            num = -1
         if winner == 3:
-            msg = "return the played color {0} to matchbox {1} and put 1 more similar bead"
+            msg = "Add 1 {0} bead to matchbox #{1}"
+            num = 1
         for turn_log in game_logs:
             if '1' in turn_log and 'mb' in turn_log:
-                instructions.append(msg.format(turn_log['1'], turn_log['mb']))
+                instructions.append({
+                    'msg': msg.format(COLORS[turn_log['1']], turn_log['mb']),
+                    'num': num,
+                    'color': color
+                })
         return instructions
 
     def make_move(self, player, position):
