@@ -12,6 +12,7 @@ game = None
 def run():
     global game
 
+
     action = request.args.get('action')
     position = request.args.get('position')
     if position:

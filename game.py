@@ -12,6 +12,9 @@ class Game:
         self.board = Board([0,0,0,0,0,0,0,0,0])
         self.current_player = 1
 
+    def debug(self, board_num):
+        print self.all_boards[board_num]
+
     def init_boards(self):
 
         boards = []
@@ -86,3 +89,7 @@ class Game:
 
         self.make_move(2, position)
         self.current_player = 1
+
+if __name__ == '__main__':
+    g = Game()
+    print g.debug(301)
