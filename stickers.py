@@ -130,10 +130,7 @@ def create_pages(cols, rows, paths):
             page.paste(img, (x, y))
         stickers += 1
     if stickers > 0:
-        page.save("board_stickers/page_{0}.png".format(i))
-
-
-
+        page.save("board_stickers/page_{0}.png".format(len(paths)))
 
 
 if __name__ == '__main__':
