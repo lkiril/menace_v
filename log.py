@@ -21,7 +21,7 @@ def get(gid):
 
 def write_stats(result):
     r = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=0)
-    r.rpush('results', json.dumps(data))
+    r.rpush('results', result)
 
 
 def get_stats():

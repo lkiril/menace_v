@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, Response
 from game import Game
-import json
+import time
 
 app = Flask(__name__)
 
@@ -25,7 +25,7 @@ def run():
 
     payload = game.get_status()
     print payload
-    return render_template('menace.html', payload=payload)
+    return render_template('menace.html', payload=payload, now=time.time())
 
 
 if __name__ == '__main__':

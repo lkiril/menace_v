@@ -3,6 +3,7 @@ from board import Board
 import log
 import time
 import random
+import matplotlib.pyplot as plt
 
 
 class Game:
@@ -12,6 +13,13 @@ class Game:
         self.gid = int(time.time())
         self.board = Board([0,0,0,0,0,0,0,0,0])
         self.current_player = 1
+        stats_sum = 0
+        stats = []
+        for s in log.get_stats():
+            stats.append(stats_sum)
+            stats_sum += int(s)
+        stats.append(stats_sum)
+        self.save_chart(stats)
 
     def debug(self, board_num):
         print self.all_boards[board_num]
@@ -49,7 +57,6 @@ class Game:
         res['gameover'] = winner
         res['current_player'] = self.current_player
         res['log'] = log.get(self.gid)
-        res['games_stats'] = log.get_stats()
 
         return res
 
@@ -74,7 +81,7 @@ class Game:
         for turn_log in game_logs:
             if '1' in turn_log and 'mb' in turn_log:
                 instructions.append({
-                    'msg': msg.format(COLORS[turn_log['1']], turn_log['mb']),
+                    'msg': msg.format(COLORS[turn_log['color']], turn_log['mb']),
                     'num': num,
                     'color': color
                 })
@@ -94,7 +101,7 @@ class Game:
         i, color = self.get_matchbox()
 
         if i is not None:
-            log.write(self.gid, {"mb": i, 1: position})
+            log.write(self.gid, {"mb": i, 1: position, "color": color[position]})
 
         self.make_move(1, position)
         self.current_player = 2
@@ -118,6 +125,13 @@ class Game:
         if move == -1:
             return
         self.make_menace_move(move)
+
+    def save_chart(self, results):
+        plt.plot(results, "r.-")
+        plt.xlabel("Games played")
+        plt.ylabel("Menace performance")
+        plt.title("How smart is Menace?")
+        plt.savefig("static/chart.png")
 
 
 if __name__ == '__main__':
