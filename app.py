@@ -1,7 +1,5 @@
-from flask import Flask
-from flask import request
+from flask import Flask, render_template, request, Response
 from game import Game
-from flask import Response
 import json
 
 app = Flask(__name__)
@@ -28,7 +26,8 @@ def run():
         game.make_menace_move(position)
 
     payload = json.dumps(game.get_status())
-    return Response(payload, status=200, mimetype='application/json')
+    return render_template('menace.html', payload=payload, name="moshe")
+    #return Response(payload, status=200, mimetype='application/json')
 
     # except Exception as e:
     #     return  Response(json.dumps({'err':e.message}), status=400, mimetype='application/json')
