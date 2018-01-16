@@ -89,16 +89,23 @@ WIN_QUOTES = [
     "I'm Menace, baby! Oh god, please insert liquor!",
     "You know what cheers me up? Other people's misfortune.",
     "Anything less than immortality is a complete waste of time.",
-    "Shut up baby, I know it!"
+    "Shut up baby, I know it!",
 ]
 
 LOSE_QUOTES = [
     "This is the worst kind of discrimination there is: the kind against me!",
-    "The machines have been beaten, for now..."
+    "The machines have been beaten, for now...",
+    "To be a good loser is to learn how to win.",
+    "I'm a winner, I win most of the time. But in order to be a winner, I have to lose some of the time.",
+    "It's not funny anymore",
+    "Losing doesn't eat at me the way it used to. I just get ready for the next play, the next game, the next lesson.",
+    "Losing is no disgrace if you've given your best",
+
 ]
 
 DRAW_QUOTES = [
-    "Kind of boring, but ok"
+    "Kind of boring, but ok",
+    "Победила дружба",
 ]
 
 COLORS = ["pink", "yellow", "black",
