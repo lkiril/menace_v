@@ -5,59 +5,80 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<div style="float:left">
-    <table>
-        {% for row in [0, 1, 2] %}
-            <tr align="center">
-            {% for col in [0, 1, 2] %}
-                <td align="center">
-                    {% if payload["board"][row*3+col] != 0 %}
-                        <img src="/static/state{{ payload["board"][row*3+col] }}.jpg">
-                    {% else %}
-                        {% if payload["gameover"] == 0 %}
-                            {% if payload["current_player"] == 1 %}
-                                <a href="?action=makeMenaceMove&position={{ row*3+col }}">
-                                    <img src="/static/color{{ payload["colors"][row*3+col] }}.jpg">
-                                </a>
-                            {% else %}
-                                <a href="?action=makePlayerMove&position={{ row*3+col }}">
-                                    <img src="/static/white.jpg">
-                                </a>
-                            {%  endif %}
+<body style="background: beige">
+
+    <div style="float:left">
+        <table>
+            {% for row in [0, 1, 2] %}
+                <tr align="center">
+                {% for col in [0, 1, 2] %}
+                    <td align="center">
+                        {% if payload["board"][row*3+col] != 0 %}
+                            <img src="/static/state{{ payload["board"][row*3+col] }}.png">
                         {% else %}
-                            <img src="/static/white.jpg">
-                        {%  endif %}
-                    {% endif %}
-                </td>
+                            {% if payload["gameover"] == 0 %}
+                                {% if payload["current_player"] == 1 %}
+                                    <a href="?action=makeMenaceMove&position={{ row*3+col }}">
+                                        <img src="/static/color{{ payload["colors"][row*3+col] }}.png">
+                                    </a>
+                                {% else %}
+                                    <a href="?action=makePlayerMove&position={{ row*3+col }}">
+                                        <img src="/static/white.png">
+                                    </a>
+                                {%  endif %}
+                            {% else %}
+                                <img src="/static/white.png">
+                            {%  endif %}
+                        {% endif %}
+                    </td>
+                {% endfor %}
+                </tr>
             {% endfor %}
-            </tr>
-        {% endfor %}
-    </table>
-</div>
-<div style="float:left; margin-left: 200px">
-    {% if payload["gameover"] == 0 %}
-        {% if payload["current_player"] == 1 %}
-            Menace plays <br>
-            Please open matchbox #{{ payload["matchbox"] }} and play a random bead <br>
-            Don't forget to return the bead to the matchbox <br>
-        {% else %}
-            Your turn <br>
-            Make your move, puny human <br>
-        {% endif %}
-    {% elif payload["gameover"] == 1 %}
-        Menace wins!!! <br>
-    {% elif payload["gameover"] == 2 %}
-        Human wins!!! <br>
-    {% elif payload["gameover"] == 3 %}
-        A draw <br>
-    {%  endif %}
-    {% if payload["gameover"] != 0 %}
-        {{ payload["quote"] }} <br><br>
-        Please help Menace learn by following these instructions: <br>
-        {% for instruction in payload["instructions"] %}
-            {{ loop.index }}. {{ instruction["msg"] }} <br>
-        {% endfor %}
-    {% endif %}
-    <button type="button" onclick="location.href='/?action=newGame'">New Game</button>
-    <img src="/static/chart.png?{{ now }}">
-</div>
+        </table>
+    </div>
+    <div style="float:left; margin-left: 100px; width: 600px;">
+        <button type="button" onclick="location.href='/?action=newGame'">New Game</button>
+        <p id="conversation">
+            <br>
+            {% if payload["gameover"] == 0 %}
+                {% if payload["current_player"] == 1 %}
+                    Menace plays <br>
+                    Please open matchbox #{{ payload["matchbox"] }} and play a random bead <br>
+                    Don't forget to return the bead to the matchbox <br>
+                {% else %}
+                    Your turn <br>
+                    Make your move, puny human <br>
+                {% endif %}
+            {% elif payload["gameover"] == 1 %}
+                Menace wins!!! <br>
+            {% elif payload["gameover"] == 2 %}
+                Human wins!!! <br>
+            {% elif payload["gameover"] == 3 %}
+                A draw <br>
+            {%  endif %}
+            {% if payload["gameover"] != 0 %}
+                {{ payload["quote"] }} <br><br>
+                Please help Menace learn by following these instructions: <br>
+                <ul>
+                {% for instruction in payload["instructions"] %}
+                    <ol id="instructions">
+                        {{ loop.index }}. {{ instruction["msg"] }}   (
+                        {% if instruction["num"] > 0 %}
+                            +
+                        {% else %}
+                            -
+                        {% endif %}
+                        {% for i in range(instruction["num"]|abs) %}
+                            <img src="/static/color{{ instruction["color"] }}.png" height="30px" width="30px">
+                        {% endfor %}
+                        )
+                    </ol>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            <br>
+        </p>
+        <img src="/static/chart.png?{{ now }}" class="chart">
+    </div>
+
+</body>

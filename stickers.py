@@ -8,6 +8,7 @@ TEXT_OFFSET = 0
 BEAD_SIZE = 240
 MARK_SIZE = 200
 MARGIN_SIZE = 0
+MARK_WIDTH = 10
 
 BOARD_SIZE = (
     CELL_SIZE*3 + MARGIN_SIZE*2,
@@ -70,15 +71,15 @@ def mark_x(draw, cell):
                             CELL_SIZE * x + (CELL_SIZE - MARK_SIZE) / 2 + MARK_SIZE + MARGIN_SIZE,
                             CELL_SIZE * y + (CELL_SIZE - MARK_SIZE) / 2 + TEXT_OFFSET + MARGIN_SIZE
     )
-    draw.line(line1, fill="black", width=5)
-    draw.line(line2, fill="black", width=5)
+    draw.line(line1, fill="black", width=MARK_WIDTH)
+    draw.line(line2, fill="black", width=MARK_WIDTH)
 
 
 def mark_o(draw, cell):
     # x = cell % 3
     # y = cell / 3
     x, y = 0, 0
-    for i in xrange(-1, 3):
+    for i in xrange(-MARK_WIDTH/2, MARK_WIDTH/2):
         position = (
             CELL_SIZE * x + (CELL_SIZE - MARK_SIZE) / 2 + i + MARGIN_SIZE,
             CELL_SIZE * y + (CELL_SIZE - MARK_SIZE) / 2 + i + TEXT_OFFSET + MARGIN_SIZE,
@@ -141,20 +142,20 @@ if __name__ == '__main__':
     # create_pages(6, 6, paths)
 
     for i in xrange(9):
-        cell = Image.new("RGB", (CELL_SIZE, CELL_SIZE), (255, 255, 255))
+        cell = Image.new("RGBA", (CELL_SIZE, CELL_SIZE), (255, 255, 255, 0))
         draw = ImageDraw.Draw(cell)
         bead(draw, i)
-        cell.save("templates/color{0}.jpg".format(i))
+        cell.save("static/color{0}.png".format(i))
 
-    cell = Image.new("RGB", (CELL_SIZE, CELL_SIZE), (255, 255, 255))
+    cell = Image.new("RGBA", (CELL_SIZE, CELL_SIZE), (255, 255, 255, 0))
     draw = ImageDraw.Draw(cell)
     mark_x(draw, 0)
-    cell.save("templates/state1.jpg")
+    cell.save("static/state1.png")
 
-    cell = Image.new("RGB", (CELL_SIZE, CELL_SIZE), (255, 255, 255))
+    cell = Image.new("RGBA", (CELL_SIZE, CELL_SIZE), (255, 255, 255, 0))
     draw = ImageDraw.Draw(cell)
     mark_o(draw, 0)
-    cell.save("templates/state2.jpg")
+    cell.save("static/state2.png")
 
-    cell = Image.new("RGB", (CELL_SIZE, CELL_SIZE), (255, 255, 255))
-    cell.save("templates/white.jpg")
+    cell = Image.new("RGBA", (CELL_SIZE, CELL_SIZE), (255, 255, 255, 0))
+    cell.save("static/white.png")
