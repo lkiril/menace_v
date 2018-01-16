@@ -50,11 +50,11 @@
                     Make your move, puny human <br>
                 {% endif %}
             {% elif payload["gameover"] == 1 %}
-                Menace wins!!! <br>
+                <b>Menace wins!!!</b> <br>
             {% elif payload["gameover"] == 2 %}
-                Human wins!!! <br>
+                <b>Human wins!!!</b> <br>
             {% elif payload["gameover"] == 3 %}
-                A draw <br>
+                <b>A draw</b> <br>
             {%  endif %}
             {% if payload["gameover"] != 0 %}
                 {{ payload["quote"] }} <br><br>
