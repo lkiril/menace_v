@@ -64,12 +64,11 @@ class Game:
         game_logs = log.get(self.gid)
         instructions = []
         msg = ""
-        color = ""
         num = ""
         if winner == 1:
             msg = "Add 3 {0} beads to matchbox #{1} "
             num = 3
-            log.write_stats(2)
+            log.write_stats(3)
         if winner == 2:
             msg = "Remove 1 {0} bead from matchbox #{1}"
             num = -1
@@ -83,7 +82,7 @@ class Game:
                 instructions.append({
                     'msg': msg.format(COLORS[turn_log['color']], turn_log['mb']),
                     'num': num,
-                    'color': color
+                    'color': turn_log['color']
                 })
         return instructions
 
