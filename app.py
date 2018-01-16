@@ -16,9 +16,10 @@ def run():
     if position:
         position = int(position)
 
-    if action == 'newGame':
+    if action == 'newGame' or not game:
         game = Game()
-    elif action == 'makePlayerMove':
+
+    if action == 'makePlayerMove':
         game.make_player_move(position)
     elif action == 'makeMenaceMove':
         game.make_menace_move(position)
