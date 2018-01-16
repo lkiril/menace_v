@@ -84,7 +84,7 @@ BOARD_INPUTS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0
 
 WIN_QUOTES = [
     "Hahahahaha! Oh wait were serious. Let me laugh even harder!",
-    "The game's over. I have all the money. Compare your lives to mine and then kill yourselves!",
+    "The game's over. I have all the money. Compare your lives to mine and then go cry in the corner",
     "That's the closest thing to 'Menace is great' that anyone other me has ever said.",
     "I'm Menace, baby! Oh god, please insert liquor!",
     "You know what cheers me up? Other people's misfortune.",
