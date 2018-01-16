@@ -42,11 +42,11 @@
             <br>
             {% if payload["gameover"] == 0 %}
                 {% if payload["current_player"] == 1 %}
-                    Menace plays <br>
+                    <b>Menace plays<</b> <br>
                     Please open matchbox #{{ payload["matchbox"] }} and play a random bead <br>
                     Don't forget to return the bead to the matchbox <br>
                 {% else %}
-                    Your turn <br>
+                    <b>Your turn</b> <br>
                     Make your move, puny human <br>
                 {% endif %}
             {% elif payload["gameover"] == 1 %}
