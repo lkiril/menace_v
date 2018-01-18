@@ -27,3 +27,4 @@ def write_stats(result):
 def get_stats():
     r = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=0)
     return r.lrange('results', 0, -1)
+
