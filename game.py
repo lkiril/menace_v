@@ -49,11 +49,11 @@ class Game:
         if winner > 0:
             res['instructions'] = self.get_end_game_instructions(winner)
             if winner == 1:
-                res['quote'] = random.choice(WIN_QUOTES)
+                res['quote'] = random.choice(WIN_QUOTES).decode('utf-8')
             elif winner == 2:
-                res['quote'] = random.choice(LOSE_QUOTES)
+                res['quote'] = random.choice(LOSE_QUOTES).decode('utf-8')
             elif winner == 3:
-                res['quote'] = random.choice(DRAW_QUOTES)
+                res['quote'] = random.choice(DRAW_QUOTES).decode('utf-8')
         res['gameover'] = winner
         res['current_player'] = self.current_player
         res['log'] = log.get(self.gid)

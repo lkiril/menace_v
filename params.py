@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 BOARD_INPUTS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2,
                     0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0,
                     1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0,
@@ -83,7 +86,7 @@ BOARD_INPUTS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0
                     1, 2, 1, 2, 1, 0, 0, 2, 0, 1, 2, 1, 2, 1, 0, 0, 0, 2, 1, 2, 1, 2, 0, 1, 0, 0, 2, 1, 2, 1]
 
 WIN_QUOTES = [
-    "Hahahahaha! Oh wait were serious. Let me laugh even harder!",
+    "Hahahahaha! Oh wait you were serious. Let me laugh even harder!",
     "The game's over. I have all the money. Compare your lives to mine and then go cry in the corner",
     "That's the closest thing to 'Menace is great' that anyone other me has ever said.",
     "I'm Menace, baby! Oh god, please insert liquor!",
@@ -104,7 +107,7 @@ LOSE_QUOTES = [
 ]
 
 DRAW_QUOTES = [
-    "Kind of boring, but ok",
+    "Boring!",
     "Победила дружба",
 ]
 
