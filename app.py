@@ -28,7 +28,7 @@ def run():
     print payload
     if payload["gameover"] != 0:
         html = render_template('menace.html', payload=payload, now=time.time(), use_modal=False)
-        with open("results/results_{0}".format(game.gid), "w") as f:
+        with open("results/results_{0}_{1}".format(game.gid, payload["gameover"]), "w") as f:
             f.write(html)
     return render_template('menace.html', payload=payload, now=time.time(), use_modal=True)
 
