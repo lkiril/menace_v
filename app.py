@@ -26,7 +26,11 @@ def run():
 
     payload = game.get_status()
     print payload
-    return render_template('menace.html', payload=payload, now=time.time())
+    if payload["gameover"] != 0:
+        html = render_template('menace.html', payload=payload, now=time.time(), use_modal=False)
+        with open("results/results_{0}".format(game.gid), "w") as f:
+            f.write(html)
+    return render_template('menace.html', payload=payload, now=time.time(), use_modal=True)
 
 
 if __name__ == '__main__':

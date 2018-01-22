@@ -2,7 +2,7 @@
 
 <head>
     <title>Flask app</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="static/style.css">
     <script type="text/javascript">
     function showPopUp(el) {
         var cvr = document.getElementById("cover")
@@ -59,7 +59,7 @@
 </head>
 
 <body style="background: beige"
-        {% if payload["gameover"] != 0 %}
+        {% if payload["gameover"] != 0 and use_modal %}
             onload="showPopUp('dialog')";
         {% endif %}
         >
@@ -87,7 +87,7 @@
                             -
                         {% endif %}
                         {% for i in range(instruction["num"]|abs) %}
-                            <img src="/static/color{{ instruction["color"] }}.png" height="30px" width="30px">
+                            <img src="static/color{{ instruction["color"] }}.png" height="30px" width="30px">
                         {% endfor %}
                         )
                     </ol>
@@ -106,20 +106,20 @@
                 {% for col in [0, 1, 2] %}
                     <td align="center">
                         {% if payload["board"][row*3+col] != 0 %}
-                            <img src="/static/state{{ payload["board"][row*3+col] }}.png">
+                            <img src="static/state{{ payload["board"][row*3+col] }}.png">
                         {% else %}
                             {% if payload["gameover"] == 0 %}
                                 {% if payload["current_player"] == 1 %}
                                     <a href="?action=makeMenaceMove&position={{ row*3+col }}">
-                                        <img src="/static/color{{ payload["colors"][row*3+col] }}.png">
+                                        <img src="static/color{{ payload["colors"][row*3+col] }}.png">
                                     </a>
                                 {% else %}
                                     <a href="?action=makePlayerMove&position={{ row*3+col }}">
-                                        <img src="/static/white.png">
+                                        <img src="static/white.png">
                                     </a>
                                 {%  endif %}
                             {% else %}
-                                <img src="/static/white.png">
+                                <img src="static/white.png">
                             {%  endif %}
                         {% endif %}
                     </td>
@@ -144,6 +144,6 @@
             {%  endif %}
             <br>
         </p>
-        <img src="/static/chart.png?{{ now }}" class="chart">
+        <img src="static/chart.png?{{ now }}" class="chart">
     </div>
 </body>
